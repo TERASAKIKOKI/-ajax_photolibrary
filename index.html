@@ -12,12 +12,48 @@
   </header>
 
   <div class="container">
-    <div id="img_unit">
-      <div class="photo">
-        <img src="img/img001.jpg">
-        <div class="inner"><p>コメント1 <span>nicname</span></p></div>
-      </div>
+    <div id="img_unit"> 
     </div>
   </div>
+    <script>
+      var images = [
+        {
+          "path": "img/img001.jpg",
+          "name": "name001",
+          "caption": "コメント1"
+        },
+        {
+          "path": "img/img002.jpg",
+          "name": "name002",
+          "caption": "コメント2"
+        }
+      ];
+
+      var img;
+      var caption;
+      var div;
+      img = document.createElement('img');
+      img.setAttribute('src', images[0].path);
+      //imgタグを作って、srcにパスをしていしている
+      //つまりJSを使って<img>を作った
+
+      caption = document.createElement('div');
+      caption.className = 'inner';
+      caption.innerHTML = '<p>' + images[0].caption + '<span>' + images[0].name + '</span></p>';
+      //<div class ="inner"><p>caption<span>name</span></p></div>
+
+      div = document.createElement('div');
+      div.className = 'photo';
+      div.appendChild(img);
+      div.appendChild(caption);
+      //
+
+      document.getElementById('img_unit').appendChild(div); //.img_unitに要素を追加している
+
+      // // 練習用のプログラム
+      // var pref = ['北海道', '青森県', '岩手県'];
+      // alert(pref[1]);
+
+    </script>
 </body>
 </html>
