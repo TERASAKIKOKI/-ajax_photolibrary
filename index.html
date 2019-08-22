@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,54 +7,79 @@
   <link rel="stylesheet" href="css/style.css">
   <title>My potos</title>
 </head>
+
 <body>
   <header>
     <h1>My Photos</h1>
   </header>
 
   <div class="container">
-    <div id="img_unit"> 
+    <div id="img_unit">
     </div>
   </div>
-    <script>
-      var images = [
-        {
-          "path": "img/img001.jpg",
-          "name": "name001",
-          "caption": "コメント1"
-        },
-        {
-          "path": "img/img002.jpg",
-          "name": "name002",
-          "caption": "コメント2"
+  <script>
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+    ajax.responseType = 'json';
+    ajax.send(null);
+
+    ajax.onreadystatechange = function(){
+      if (ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
+        for (var i=0; i<this.response.length; i++){
+          alert(this.response[i].path);
         }
-      ];
+      }
+    }
+  </script>
 
-      var img;
-      var caption;
-      var div;
-      img = document.createElement('img');
-      img.setAttribute('src', images[0].path);
-      //imgタグを作って、srcにパスをしていしている
-      //つまりJSを使って<img>を作った
-
-      caption = document.createElement('div');
-      caption.className = 'inner';
-      caption.innerHTML = '<p>' + images[0].caption + '<span>' + images[0].name + '</span></p>';
-      //<div class ="inner"><p>caption<span>name</span></p></div>
-
-      div = document.createElement('div');
-      div.className = 'photo';
-      div.appendChild(img);
-      div.appendChild(caption);
-      //
-
-      document.getElementById('img_unit').appendChild(div); //.img_unitに要素を追加している
-
-      // // 練習用のプログラム
-      // var pref = ['北海道', '青森県', '岩手県'];
-      // alert(pref[1]);
-
-    </script>
 </body>
+
 </html>
+s
+
+<!-- <script>
+    var images = [
+      {
+        "path": "img/img001.jpg",
+        "name": "name001",
+        "caption": "コメント1"
+      },
+      {
+        "path": "img/img002.jpg",
+        "name": "name002",
+        "caption": "コメント2"
+      },
+      {
+        "path": "img/img003.jpg",
+        "name": "name003",
+        "caption": "コメント3"
+      }
+    ];
+
+    var img;
+    var caption;
+    var div;
+
+    for (var i = 0; i < images.length; i++){
+    img = document.createElement('img');
+    img.setAttribute('src', images[i].path);
+    //imgタグを作って、srcにパスをしていしている
+    //つまりJSを使って<img>を作った
+
+    caption = document.createElement('div');
+    caption.className = 'inner';
+    caption.innerHTML = '<p>' + images[i].caption + '<span>' + images[i].name + '</span></p>';
+    //<div class ="inner"><p>caption<span>name</span></p></div>
+
+    div = document.createElement('div');
+    div.className = 'photo';
+    div.appendChild(img);
+    div.appendChild(caption);
+    //
+
+    document.getElementById('img_unit').appendChild(div); //.img_unitに要素を追加している
+    }
+    // // 練習用のプログラム
+    // var pref = ['北海道', '青森県', '岩手県'];
+    // alert(pref[1]);
+  </script> -->
