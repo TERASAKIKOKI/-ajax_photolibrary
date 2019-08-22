@@ -25,11 +25,25 @@
 
     ajax.onreadystatechange = function(){
       if (ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
-        for (var i=0; i<this.response.length; i++){
-          alert(this.response[i].path);
+        for (var i = 0; i < this.response.length; i++){
+          var data = this.response[i];
+
+          var img = document.createElement('img');
+          img.setAttribute('src', data.path);
+
+          var caption = document.createElement('div');
+          caption.className = 'inner';
+          caption.innerHTML = '<p>' + data.caption + '<span>' + data.name + '</span></p>';
+
+          var div = document.createElement('div');
+          div.className = 'photo';
+          div.appendChild(img);
+          div.appendChild(caption);
+
+          document.getElementById('img_unit').appendChild(div);
         }
       }
-    }
+    };
   </script>
 
 </body>
